@@ -50,19 +50,21 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyDOIEqiOzZ9p_dL1GNmnakYffts3FFs0X0',
-    appId: '1:272145185703:android:d7f15e77aab18777fad482',
-    messagingSenderId: '272145185703',
-    projectId: 'appfirebasert',
-    storageBucket: 'appfirebasert.appspot.com',
+    apiKey: 'AIzaSyCC8MLscmWH0fynE45x6abElYjfAsf7tng',
+    appId: '1:1040799383310:android:c2a22a5f7d3d52b5b2215f',
+    messagingSenderId: '1040799383310',
+    projectId: 'comtestrealtime',
+    databaseURL: 'https://comtestrealtime-default-rtdb.firebaseio.com',
+    storageBucket: 'comtestrealtime.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyA_qLepPEnzA9dKQITLsW33N4cxpJl-K9o',
-    appId: '1:272145185703:ios:207caa32de0e4a6dfad482',
-    messagingSenderId: '272145185703',
-    projectId: 'appfirebasert',
-    storageBucket: 'appfirebasert.appspot.com',
+    apiKey: 'AIzaSyAL3t9MSh-_IVrQI2JBUXhzew0TuQ9eez8',
+    appId: '1:1040799383310:ios:112efb111c20c265b2215f',
+    messagingSenderId: '1040799383310',
+    projectId: 'comtestrealtime',
+    databaseURL: 'https://comtestrealtime-default-rtdb.firebaseio.com',
+    storageBucket: 'comtestrealtime.appspot.com',
     iosBundleId: 'com.example.commrealtimedatabase',
   );
 }

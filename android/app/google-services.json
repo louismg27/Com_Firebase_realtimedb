@@ -1,14 +1,14 @@
 {
   "project_info": {
-    "project_number": "272145185703",
-    "firebase_url": "https://appfirebasert-default-rtdb.firebaseio.com",
-    "project_id": "appfirebasert",
-    "storage_bucket": "appfirebasert.appspot.com"
+    "project_number": "1040799383310",
+    "firebase_url": "https://comtestrealtime-default-rtdb.firebaseio.com",
+    "project_id": "comtestrealtime",
+    "storage_bucket": "comtestrealtime.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:272145185703:android:6a42bddbb37a1e23fad482",
+        "mobilesdk_app_id": "1:1040799383310:android:c2a22a5f7d3d52b5b2215f",
         "android_client_info": {
           "package_name": "com.example.commrealtimedatabase"
         }
@@ -16,7 +16,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyDOIEqiOzZ9p_dL1GNmnakYffts3FFs0X0"
+          "current_key": "AIzaSyCC8MLscmWH0fynE45x6abElYjfAsf7tng"
         }
       ],
       "services": {

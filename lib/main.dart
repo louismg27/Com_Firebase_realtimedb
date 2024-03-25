@@ -1,9 +1,7 @@
-
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
 import 'listamensajes.dart';
-
 import 'firebase_options.dart';
 
 void main() async {
@@ -11,33 +9,38 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  runApp(const App());
+  runApp(const MyApp());
 }
 
-class App extends StatelessWidget {
-  const App({Key? key}) : super(key: key);
+class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder(
-      future: Firebase.initializeApp(),
-      builder: (context, snapshot) {
-        if (snapshot.connectionState == ConnectionState.done) {
-          return MaterialApp(
-            title: "Ejemplo Chat",
-            theme: ThemeData(primarySwatch: Colors.blue),
-            home: ListaMensajes(),
-          );
-        } else {
-          return MaterialApp(
-            home: Scaffold(
-              body: Center(
-                child: CircularProgressIndicator(),
-              ),
-            ),
-          );
-        }
+    return MaterialApp(
+      title: "Ejemplo Chat",
+      theme: ThemeData(primarySwatch: Colors.blue),
+      initialRoute: '/',
+      routes: {
+        '/': (context) => ListaMensajes(),
+        '/nueva_pagina': (context) => NuevaPagina(),
       },
+    );
+
+  }
+}
+class NuevaPagina extends StatelessWidget {
+  const NuevaPagina({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Nueva Página'),
+      ),
+      body: Center(
+        child: Text('Contenido de la nueva página'),
+      ),
     );
   }
 }

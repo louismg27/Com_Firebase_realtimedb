@@ -53,7 +53,7 @@ class _ListaMensajesState extends State<ListaMensajes> {
                   icon: Icon(_puedoEnviarMensaje()
                       ? CupertinoIcons.arrow_right_circle_fill
                       : CupertinoIcons.arrow_right_circle),
-                  onPressed: () {},
+                  onPressed: () {print("sepresiono");},
                 ),
               ],
             ),
@@ -66,6 +66,7 @@ class _ListaMensajesState extends State<ListaMensajes> {
   void _enviarMensaje() {
     if (_puedoEnviarMensaje()) {
       final mensaje = Mensaje(_mensajeController.text, DateTime.now());
+      print("mensaje");
       widget.mensajeDao.guardarMensaje(mensaje);
       _mensajeController.clear();
       setState(() {});
