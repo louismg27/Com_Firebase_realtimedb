@@ -1,51 +1,163 @@
-
-
-
-import 'package:commrealtimedatabase/page_statusinternet.dart';
-import 'package:firebase_core/firebase_core.dart';
+import 'package:commrealtimedatabase/services/firebase_data.dart';
 import 'package:flutter/material.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_database/firebase_database.dart';
 
-import 'listamensajes.dart';
 import 'firebase_options.dart';
+
+
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  runApp(const MyApp());
+  runApp(  MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: "Ejemplo Chat",
-      theme: ThemeData(primarySwatch: Colors.blue),
-      initialRoute: '/',
-      routes: {
-        '/': (context) => ListaMensajes(),
-        '/connectivity': (context) => ConnectivityPage(),
-      },
+      title: 'Firebase CRUD Example',
+      home: FirebaseCRUD(),
     );
-
   }
 }
-class NuevaPagina extends StatelessWidget {
-  const NuevaPagina({Key? key}) : super(key: key);
 
+class FirebaseCRUD extends StatefulWidget {
+  @override
+  _FirebaseCRUDState createState() => _FirebaseCRUDState();
+}
+
+class _FirebaseCRUDState extends State<FirebaseCRUD> {
+  final databaseReference = FirebaseDatabase.instance.ref();
+
+  TextEditingController _textEditingController = TextEditingController();
+  String data = '';
+  String cmdOpenValue1='';
+  MyFirebaseRTDatabase databaseRT = MyFirebaseRTDatabase();
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    databaseRT.createData();
+
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Nueva Página'),
+        title: Text('Firebase CRUD Example'),
       ),
-      body: Center(
-        child: Text('Contenido de la nueva página'),
+      body: Padding(
+        padding: EdgeInsets.all(16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            TextField(
+              controller: _textEditingController,
+              decoration: InputDecoration(labelText: 'Enter Data'),
+              onChanged: (value) {
+                data = value;
+              },
+            ),
+            SizedBox(height: 10),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                ElevatedButton(
+                  onPressed: createData,
+                  child: Text('Create'),
+                ),
+                ElevatedButton(
+                  onPressed: readData,
+                  child: Text('Read'),
+                ),
+                ElevatedButton(
+                  onPressed: updateData,
+                  child: Text('Update'),
+                ),
+                ElevatedButton(
+                  onPressed: deleteData,
+                  child: Text('Delete'),
+                ),
+              ],
+            ),
+            Text("Leido: $cmdOpenValue1")
+          ],
+        ),
       ),
     );
   }
+  void readData() {
+    // DatabaseReference ref = FirebaseDatabase.instance.ref('Tanque1/cmd_open1');
+    // ref.onValue.listen((DatabaseEvent  event) {
+    //   final data = event.snapshot.value;
+    //
+    // });
+
+    databaseRT.readData().then((value) {
+      cmdOpenValue1= value;
+      setState(() {
+
+      });
+    });
+  }
+
+  void createData() {
+    databaseReference.child('Tanque1').set({'cmd_open1': data});
+    _textEditingController.clear();
+  }
+
+
+  void updateData() {
+    // databaseReference.child('message').update({'data': data});
+    // _textEditingController.clear();
+    databaseRT.writeData();
+  }
+
+  void deleteData() {
+    databaseReference.child('message').remove();
+    _textEditingController.clear();
+  }
 }
+
+
+
+
+// import 'package:commrealtimedatabase/page_statusinternet.dart';
+// import 'package:firebase_core/firebase_core.dart';
+// import 'package:flutter/material.dart';
+//
+// import 'listamensajes.dart';
+// import 'firebase_options.dart';
+//
+// void main() async {
+//   WidgetsFlutterBinding.ensureInitialized();
+//   await Firebase.initializeApp(
+//     options: DefaultFirebaseOptions.currentPlatform,
+//   );
+//   runApp(const MyApp());
+// }
+//
+// class MyApp extends StatelessWidget {
+//   const MyApp({Key? key}) : super(key: key);
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return MaterialApp(
+//       title: "Ejemplo Chat",
+//       theme: ThemeData(primarySwatch: Colors.blue),
+//       initialRoute: '/',
+//       routes: {
+//         '/': (context) => ListaMensajes(),
+//         '/connectivity': (context) => ConnectivityPage(),
+//       },
+//     );
+//
+//   }
+// }
+//
 
