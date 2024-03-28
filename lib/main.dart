@@ -68,7 +68,7 @@ class _FirebaseCRUDState extends State<FirebaseCRUD> {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 ElevatedButton(
-                  onPressed: createData,
+                  onPressed: (){},
                   child: Text('Create'),
                 ),
                 ElevatedButton(
@@ -98,29 +98,29 @@ class _FirebaseCRUDState extends State<FirebaseCRUD> {
     //
     // });
 
-    databaseRT.readData().then((value) {
-      cmdOpenValue1= value;
-      setState(() {
+    // databaseRT.readData('Tanque2').then((value) {
+    //   cmdOpenValue1= value;
+    //   setState(() {
+    //
+    //   });
+    // });
+     databaseRT.readListDataTank().then((value) {
+       value.forEach((element) {print(element);});
+     });
 
-      });
-    });
   }
 
-  void createData() {
-    databaseReference.child('Tanque1').set({'cmd_open1': data});
-    _textEditingController.clear();
-  }
 
 
   void updateData() {
     // databaseReference.child('message').update({'data': data});
     // _textEditingController.clear();
-    databaseRT.writeData();
+    databaseRT.updateData('Tanque1','cmd_open_valve_in',1);
   }
 
   void deleteData() {
-    databaseReference.child('message').remove();
-    _textEditingController.clear();
+    // databaseReference.child('message').remove();
+    // _textEditingController.clear();
   }
 }
 
